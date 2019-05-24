@@ -3,7 +3,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 // const passport = require('passport');
 // const session = require('express-session');
-// const routes = require('./controllers/routes');
+const routes = require('./controllers/routes');
 // require('./services/passport');
 
 module.exports = () => {
@@ -24,7 +24,7 @@ module.exports = () => {
             res.send({ hello: 'there' });
         });
 
-        // routes(hugo);
+        routes(hugo);
 
         hugo.listen(process.env.PORT || 5000);
     });

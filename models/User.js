@@ -8,8 +8,10 @@ const userSchema = new Schema({
     name_first: { type: String, default: '' },
     name_last: { type: String, default: '' },
     name_middle: { type: String, default: '' },
-    password: String, // find a way to hash these obviously
+    password: String,
     phone_number: { type: String, default: '' },
+    date_created: Date,
+    date_updated: Date,
 });
 
-model('User', userSchema);
+module.exports = model('User', userSchema, 'users');

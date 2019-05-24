@@ -6,12 +6,13 @@ const addressSchema = new Schema({
     street_address_line_1: { type: String, default: '' },
     street_address_line_2: { type: String, default: '' },
     post_office_box_number: { type: String, default: '' },
+    city: { type: String, default: '' },
     locality: { type: String, default: '' },
     region: { type: String, default: '' },
     postal_code: { type: String, default: '' },
     user_id: { type: ObjectId, ref: 'User' },
+    date_created: Date,
+    date_updated: Date,
 });
 
-model('PostalAddress', addressSchema);
-
-
+module.exports = model('PostalAddress', addressSchema, 'addresses');
