@@ -1,11 +1,11 @@
 const { checkSchema } = require('express-validator/check');
 
-const { Address } = require('../../models');
+const { Review } = require('../../models');
 const { checkValidations } = require('../../utils/customValidations');
 
 module.exports = {
     validate: checkSchema({
-        address_id: {
+        review_id: {
             in: ['params', 'query'],
             trim: true,
             isMongoId: true,
@@ -16,12 +16,12 @@ module.exports = {
         checkValidations(req, res);
         if (!res.headersSent) {
             try {
-                const { address_id } = req.query;
-                const address = await Address.findById(address_id);
-                if (address) {
-                    res.status(200).send({ address });
+                const { review_id } = req.query;
+                const review = await Review.findById(review_id);
+                if (review) {
+                    res.status(200).send({ review });
                 } else {
-                    res.status(404).send('Not Found: Invalid address id');
+                    res.status(404).send('Not Found. Invalid review id');
                 }
             } catch (err) {
                 next(err);

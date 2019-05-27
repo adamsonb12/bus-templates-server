@@ -19,6 +19,38 @@ module.exports = {
         }
     },
 
+    // File Category Validations
+    validFileCategory: async file_category_id => {
+        const file_category = await FileCategory.findById(file_category_id);
+        if (!file_category) {
+            throw new Error('Invalid File Category Id. Category doesn\'t exist');
+        }
+    },
+
+    // Download Validations
+    validDownload: async download_id => {
+        const download = await Download.findById(download_id);
+        if (!download) {
+            throw new Error('Invalid Download Id. Download doesn\'t exist');
+        }
+    },
+
+    // File Validations
+    validFile: async file_id => {
+        const file = await File.findById(file_id);
+        if (!file) {
+            throw new Error('Invalid File Id. File doesn\'t exist');
+        }
+    },
+
+    // Review Validations
+    validReview: async review_id => {
+        const review = await Review.findById(review_id);
+        if (!review) {
+            throw new Error('Invalid Review Id. Review doesn\'t exist');
+        }
+    },
+
     // User Validations
     validNewEmail: async email => {
         const user_id = await User.findOne({ email: email }, '_id');
