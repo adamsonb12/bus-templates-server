@@ -7,10 +7,10 @@ const {
 } = require('./address-controller');
 
 // Download
-const { downloadCreateDownload, downloadGetDownload } = require('./download-controller');
+const { downloadCreateDownload, downloadGetDownload, downloadGetUsersDownloads } = require('./download-controller');
 
 // File
-const { fileCreateFile, fileDeleteFile, fileGetFile, fileUpdateFile } = require('./file-controller');
+const { fileCreateFile, fileDeleteFile, fileGetFile, fileGetUsersFiles, fileUpdateFile } = require('./file-controller');
 
 // Review
 const { reviewCreateReview, reviewGetReview, reviewUpdateReview } = require('./review-controller');
@@ -28,12 +28,14 @@ module.exports = hugo => {
     // Download Routes
     hugo.post('/download', downloadCreateDownload.validate, downloadCreateDownload.action);
     hugo.get('/download', downloadGetDownload.validate, downloadGetDownload.action);
+    hugo.get('/users_downloads', downloadGetUsersDownloads.validate, downloadGetUsersDownloads.action);
 
     // File Routes
     hugo.post('/file', fileCreateFile.validate, fileCreateFile.action);
     hugo.delete('/file', fileDeleteFile.validate, fileDeleteFile.action);
     hugo.get('/file', fileGetFile.validate, fileGetFile.action);
     hugo.put('/file', fileUpdateFile.validate, fileUpdateFile.action);
+    hugo.get('/user_files', fileGetUsersFiles.validate, fileGetUsersFiles.action);
 
     // Review Routes
     hugo.post('/review', reviewCreateReview.validate, reviewCreateReview.action);

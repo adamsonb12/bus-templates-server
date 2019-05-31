@@ -1,7 +1,7 @@
 const { checkSchema } = require('express-validator/check');
 
-const { File } = require('../../models');
-const { checkValdations } = require('../../utils/customValidations');
+const { Download, File } = require('../../models');
+const { checkValidations } = require('../../utils/customValidations');
 
 module.exports = {
     validate: checkSchema({
@@ -13,13 +13,15 @@ module.exports = {
     }),
 
     action: async (req, res, next) => {
-        checkValdations(req, res);
+        checkValidations(req, res);
         if (!res.headersSent) {
             try {
                 const { file_id } = req.query;
                 const file = await File.findById(file_id);
+                const downloads = await Download.find({ file_id });
+                const downloads_count = downloads.length || 0;
                 if (file) {
-                    res.status(200).send({ file });
+                    res.status(200).send({ file, downloads_count });
                 } else {
                     res.status(400).send('Not Found: Invalid File Id');
                 }
