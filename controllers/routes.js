@@ -7,7 +7,7 @@ const {
 } = require('./address-controller');
 
 // Auth
-const { authLocal, authLoginFail, authLoginSuccess, authLogout } = require('./auth-controller');
+const { authLocal, authLogout } = require('./auth-controller');
 
 // Download
 const { downloadCreateDownload, downloadGetDownload, downloadGetUsersDownloads } = require('./download-controller');
@@ -31,8 +31,6 @@ module.exports = hugo => {
     // Auth Routes
     hugo.post('/login', authLocal);
     hugo.post('/logout', authLogout);
-    hugo.get('/login_success', authLoginSuccess);
-    hugo.get('/login_fail', authLoginFail);
 
     // Download Routes
     hugo.post('/download', downloadCreateDownload.validate, downloadCreateDownload.action);
