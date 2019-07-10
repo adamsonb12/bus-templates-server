@@ -19,6 +19,7 @@ module.exports = {
                 const { user_id } = req.query;
                 const user = await User.findById(user_id);
                 if (user) {
+                    // TODO => return less if not same user from session
                     res.status(200).send({
                         user: {
                             id: user._id,

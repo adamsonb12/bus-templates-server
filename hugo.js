@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 const passport = require('passport');
 const session = require('express-session');
 const routes = require('./controllers/routes');
+const cors = require('cors');
 require('./services/passport');
 
 module.exports = () => {
@@ -19,12 +20,8 @@ module.exports = () => {
         hugo.use(session({ secret: process.env.SESSION_SECRET }));
         hugo.use(passport.initialize());
         hugo.use(passport.session());
-
-        hugo.use(function(req, res, next) {
-            res.header('Access-Control-Allow-Origin', '*');
-            res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
-            next();
-        });
+        
+        hugo.use(cors());
 
         hugo.get('/', (req, res) => {
             res.send({ hello: 'there' });
