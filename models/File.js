@@ -7,7 +7,7 @@ const fileSchema = new Schema({
     description: { type: String, default: '' },
     source_url: { type: String, default: '' },
     user_id: { type: ObjectId, ref: 'User' },
-    category_id: { type: ObjectId, ref: 'FileCategory' },
+    category_name: { type: String, ref: 'FileCategory' },
     date_created: Date,
     date_updated: Date,
 });

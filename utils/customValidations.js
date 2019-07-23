@@ -20,10 +20,10 @@ module.exports = {
     },
 
     // File Category Validations
-    validFileCategory: async file_category_id => {
-        const file_category = await FileCategory.findById(file_category_id);
+    validFileCategory: async cat_name => {
+        const file_category = await FileCategory.findOne({ category_name: cat_name });
         if (!file_category) {
-            throw new Error('Invalid File Category Id. Category doesn\'t exist');
+            throw new Error('Invalid File Category Name. Category doesn\'t exist');
         }
     },
 

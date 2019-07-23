@@ -57,10 +57,9 @@ module.exports = {
             },
             optional: true,
         },
-        'options.category_id': {
+        'options.category_name': {
             in: ['params', 'body'],
-            errorMessage: 'category_id is required and must be a valid category_id',
-            isMongoId: true,
+            errorMessage: 'category_name is required and must be a valid category_name',
             escape: true,
             trim: true,
             custom: {

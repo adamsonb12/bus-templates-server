@@ -44,10 +44,9 @@ module.exports = {
                 options: validUser,
             },
         },
-        category_id: {
+        category_name: {
             in: ['params', 'body'],
-            errorMessage: 'category_id is required and must be a valid category_id',
-            isMongoId: true,
+            errorMessage: 'category_name is required and must be a valid category_name',
             escape: true,
             trim: true,
             custom: {
@@ -60,14 +59,14 @@ module.exports = {
         checkValidations(req, res);
         if (!res.headersSent) {
             try {
-                const { title, description, source_url, user_id, category_id } = req.body;
+                const { title, description, source_url, user_id, category_name } = req.body;
                 const date = new Date();
                 const file = await File.create({
                     title,
                     description,
                     source_url,
                     user_id,
-                    category_id,
+                    category_name,
                     date_created: date,
                     date_updated: date,
                 });
