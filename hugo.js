@@ -1,4 +1,5 @@
 require('dotenv').config();
+const AWS = require('aws-sdk');
 const express = require('express');
 const mongoose = require('mongoose');
 const passport = require('passport');
@@ -20,8 +21,13 @@ module.exports = () => {
         hugo.use(session({ secret: process.env.SESSION_SECRET }));
         hugo.use(passport.initialize());
         hugo.use(passport.session());
-        
+
         hugo.use(cors());
+
+        AWS.config.update({
+            accessKeyId: process.env.AWS_ACCESS,
+            secretAccessKey: process.env.AWS_SECRET,
+        });
 
         hugo.get('/', (req, res) => {
             res.send({ hello: 'there' });

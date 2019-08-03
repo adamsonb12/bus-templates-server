@@ -1,3 +1,4 @@
+const AWS = require('aws-sdk');
 const { checkSchema } = require('express-validator/check');
 
 const { File } = require('../../models');
@@ -58,6 +59,12 @@ module.exports = {
     action: async (req, res, next) => {
         checkValidations(req, res);
         if (!res.headersSent) {
+            // const params = {
+            //     Bucket: process.env.AWS_BUCKET,
+            //     Body: fs.createReadStream(filePath),
+            //     Key: 'folder/' + Date.now() + '_' + path.basename(filePath)
+            //   };
+            // const s3 = new AWS.s3();
             try {
                 const { title, description, source_url, user_id, category_name } = req.body;
                 const date = new Date();
